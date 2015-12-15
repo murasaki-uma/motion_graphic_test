@@ -1,0 +1,56 @@
+
+
+<html>
+  <head>
+    <title>Canvas tutorial</title>
+    <script type="text/javascript">
+        window.onload = function(){
+        // スワイプによるスクロールを禁止させる
+        document.body.addEventListener('touchstart', function (event) {
+          event.preventDefault();
+        });
+        // キャンバス作成
+        var scale = window.devicePixelRatio;
+        var canvas = document.createElement('canvas');
+        canvas.style.width = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+        canvas.width = window.innerWidth * scale;
+        canvas.height = window.innerHeight * scale;
+        // キャンバスを配置するdiv要素を作成し、bodyに追加
+        var container = document.createElement('div');
+        container.style.width = window.innerWidth + 'px';
+        container.style.height = window.innerHeight + 'px';
+        container.style.overflow = 'hidden';
+        container.appendChild(canvas);
+        document.body.appendChild(container);
+            
+        var ctx = canvas.getContext('2d');
+        var w = canvas.width;
+        var h = canvas.height;
+        var x = 0;
+        // コンテキスト取得
+        //var ctx = canvas.getContext('2d');
+        function loop() {
+            function render() {
+                ctx.clearRect(0, 0, w, h); // Canvas全体をクリア
+                ctx.beginPath();
+                ctx.strokeRect(x, 0, 100, 100);  //四角形を描く
+                x++ // 右にアニメーション
+            }
+            // 1000msec / 60 = 16.6666...なので、16を指定すると約60fps
+            setInterval(render, 16);
+        }
+        loop();
+            
+        }
+    </script>
+      
+    <style type="text/css">
+      body { margin: 0; }
+
+    </style>
+  </head>
+  <body>
+  </body>
+</html>
+
