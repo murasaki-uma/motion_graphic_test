@@ -35,12 +35,23 @@
             var x = 0;
             // コンテキスト取得
             //var ctx = canvas.getContext('2d');
+            function loop() {
+                function render() {
+                    ctx.clearRect(0, 0, w, h); // Canvas全体をクリア
+                    ctx.beginPath();
+                    ctx.strokeRect(x, 0, 100, 100);  //四角形を描く
+                    x++ // 右にアニメーション
+                }
+                // 1000msec / 60 = 16.6666...なので、16を指定すると約60fps
+                setInterval(render, 16);
+            }
+            loop();
             
             
             //winodow.requestAnimationFrame(function() {
               // アニメーションで実行したい処理
                 
-
+            /*
             // アニメーションループに使うメソッドを決める
             var animationFrame
                = window.requestAnimationFrame
@@ -78,6 +89,7 @@
             function calc() {
                 x+= (w-x)/20 // 右にアニメーション
             }
+            */
             
 
         }
@@ -85,7 +97,7 @@
       
     <style type="text/css">
       body { margin: 0; }
-
+        
     </style>
   </head>
   <body>
